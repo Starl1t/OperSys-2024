@@ -1,38 +1,38 @@
-//#include <iostream>
-//#include <thread>
-//#include <mutex>
-//
-//int global_variable = 0; // Глобальная переменная
-//std::mutex mutex; // Мьютекс для блокировки доступа к глобальной переменной
-//
-//void increment_global(int id)
-//{
-//   for (int i = 0; i < 1000000; i++)
-//   {
-//      mutex.lock(); // Блокировка мьютекса перед изменением переменной
-//      global_variable++;
-//      mutex.unlock(); // Разблокировка мьютекса после изменения переменной
-//   }
-//   std::cout << "Thread " << id << " finished work." << std::endl;
-//}
-//
-//int main()
-//{
-//   std::thread threads[4]; // Массив из 4 потоков
-//
-//   // Создание 4 потоков и запуск функции increment_global в каждом
-//   for (int i = 0; i < 4; i++)
-//   {
-//      threads[i] = std::thread(increment_global, i);
-//   }
-//
-//   // Ожидание завершения всех потоков
-//   for (int i = 0; i < 4; i++)
-//   {
-//      threads[i].join();
-//   }
-//
-//   std::cout << "Global var: " << global_variable << std::endl;
-//
-//   return 0;
-//}
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+int global_variable = 0; // ГѓГ«Г®ГЎГ Г«ГјГ­Г Гї ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г Гї
+std::mutex mutex; // ГЊГјГѕГІГҐГЄГ± Г¤Г«Гї ГЎГ«Г®ГЄГЁГ°Г®ГўГЄГЁ Г¤Г®Г±ГІГіГЇГ  ГЄ ГЈГ«Г®ГЎГ Г«ГјГ­Г®Г© ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г©
+
+void increment_global(int id)
+{
+  for (int i = 0; i < 1000000; i++)
+  {
+     mutex.lock(); // ГЃГ«Г®ГЄГЁГ°Г®ГўГЄГ  Г¬ГјГѕГІГҐГЄГ±Г  ГЇГҐГ°ГҐГ¤ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГҐГ¬ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г©
+     global_variable++;
+     mutex.unlock(); // ГђГ Г§ГЎГ«Г®ГЄГЁГ°Г®ГўГЄГ  Г¬ГјГѕГІГҐГЄГ±Г  ГЇГ®Г±Г«ГҐ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г©
+  }
+  std::cout << "Thread " << id << " finished work." << std::endl;
+}
+
+int main()
+{
+  std::thread threads[4]; // ГЊГ Г±Г±ГЁГў ГЁГ§ 4 ГЇГ®ГІГ®ГЄГ®Гў
+
+  // Г‘Г®Г§Г¤Г Г­ГЁГҐ 4 ГЇГ®ГІГ®ГЄГ®Гў ГЁ Г§Г ГЇГіГ±ГЄ ГґГіГ­ГЄГ¶ГЁГЁ increment_global Гў ГЄГ Г¦Г¤Г®Г¬
+  for (int i = 0; i < 4; i++)
+  {
+     threads[i] = std::thread(increment_global, i);
+  }
+
+  // ГЋГ¦ГЁГ¤Г Г­ГЁГҐ Г§Г ГўГҐГ°ГёГҐГ­ГЁГї ГўГ±ГҐГµ ГЇГ®ГІГ®ГЄГ®Гў
+  for (int i = 0; i < 4; i++)
+  {
+     threads[i].join();
+  }
+
+  std::cout << "Global var: " << global_variable << std::endl;
+
+  return 0;
+}
